@@ -1,0 +1,4 @@
+cd /home/hangspot_user/hangspot/
+source bin/activate
+gunicorn app:app --bind unix:/tmp/gunicorn_hangspot.sock -w 4 -D
+deactivate

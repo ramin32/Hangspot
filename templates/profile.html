@@ -1,0 +1,114 @@
+{% import '_util.html' as util %}
+
+{% extends "base.html" %}
+{% block title %}Page Not Found{% endblock %}
+{% block body %}
+<div id="profile">
+    <h2>{{profile_user.username}}'s profile</h2>
+
+    <div id="profile_meta">
+        {{ util.profile_link(profile_user)}}       
+        <br/>
+        <a href="{{url_for('views.add_buddy', username=profile_user.username)}}">{{util.icon('add.png')}} Add Buddy</a>
+        <br/>
+        <a href="{{url_for('views.private_message', username=profile_user.username)}}">{{util.icon('email.png')}} Private Message</a>
+        <div id="activity" class="round_box">
+            <h4> Activity </h4>
+            <p>
+            Last seen: 
+            <span class="date">
+            {{profile_user.last_login | pretty_date}}
+            </span>
+            <p>
+            Member since: 
+            <span class="date">
+            {{profile_user.date_joined | pretty_date}}
+            </span>
+        </div>
+        <div class="round_box" id="photos_section">
+        <h4> Photos </h4>
+        <div class="box_meta_links">
+            <a href="{{url_for('views.photos', username=profile_user.username)}}">See All</a>
+            {% if g.user and g.user.username == profile_user.username %}
+                | <a href="{{url_for('views.photos', username=profile_user.username)}}">Edit {{util.icon('edit.png')}}</a>
+            {% endif %}
+        </div>
+            <div>
+            {% for photo in profile_user.photos[:6] %}
+            <a href="{{url_for('views.photos', username=profile_user.username)}}">
+                <img src="{{photo.url()}}" class="thumb" />
+            </a>
+            {% endfor %}
+            </div>
+        </div>
+
+        <div id="buddies_section" class="round_box">
+            <h4> Buddies </h4>
+            {% for buddy in profile_user.buddies %}
+                <div>
+                    <a href="{{url_for('views.profile', username=buddy.buddy.username)}}">{{buddy.buddy.username}}</a>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div id="visitors_section" class="round_box">
+            <h4> Visitors </h4>
+            {% if g.user and g.user.username == profile_user.username %}
+                <div class="box_meta_links">
+                    <a href="{{url_for('views.clear_visitors')}}">Clear All</a>
+                </div>
+            {% endif %}
+            {% for v in profile_user.visits %}
+                <div>
+                    <a href="{{url_for('views.profile', username=v.visitor.username)}}">{{v.visitor.username}}</a>
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+    <div id="profile_questions" class="round_box">
+        <h4>Interview </h4>
+    {% if g.user and g.user.username == profile_user.username %}
+    <a href="{{url_for('views.interview', username=profile_user.username)}}">Edit {{util.icon('edit.png')}}</a>
+    {% endif %}
+    {% for a in profile_user.interview_answers %}
+        <div class="question">
+        {{questions[a.question_id]}} 
+        </div>
+        <div class="answer">{{a.answer}}</div>
+    {% endfor %}
+    </div>
+
+    <div id="profile_comments" class="round_box">
+    <h4> Comments </h4>
+        {% if g.user %}
+            <form method="POST" action="{{url_for('views.submit_comment', username=profile_user.username)}}"/>
+                {{comment_form.csrf}}
+                <div id="comment_input">
+                    {{comment_form.comment()}}
+                </div>
+                <div id="comment_submit">
+                <input type="submit" value="Add Comment"/>
+                </div>
+            </form>
+        {% endif %}
+        {% for comment in profile_user.comments_received %}
+        <div class="comment">
+            {{util.profile_link(comment.sender)}}
+            <div class="message">
+                <div class="date">
+                {{comment.date_created | format_datetime}}
+                </div>
+                <div>
+                {{comment.comment}}
+                </div>
+            </div>
+            <br clear="all"/>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html'%}
+{% import '_util.html' as util %}
+{% block body %}
+<div class="round_box" id="feedback">
+    <h2> We welcome any comments, questions or feedback!</h2>
+<form method="POST" action="{{url_for('views.feedback')}}">
+    <table>
+        {{ form.csrf }}
+        {{ util.field(form.name) }}
+        {{ util.field(form.email) }}
+        {{ util.field(form.message) }}
+        {{ util.field(form.recaptcha) }}
+
+        <tr>
+            <td/>
+            <td> <input type="submit" value="Submit"/></td>
+        </tr>
+    </table>
+
+</form>
+</div>
+{% endblock %}

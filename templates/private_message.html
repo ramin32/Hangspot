@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% import '_util.html' as util %}
+
+{% block body %}
+<div class="round_box" id="private_message">
+    <form method="POST" action="{{url_for('views.private_message', username=profile_user.username)}}">
+        {{form.csrf}}
+        <table>
+            {{ util.field(form.subject) }}
+            {{ util.field(form.message) }}
+            {{ util.submit_field() }}
+        </table>
+    </form>
+</div>
+
+{% endblock %}

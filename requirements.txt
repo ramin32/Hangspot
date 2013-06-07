@@ -1,0 +1,14 @@
+Babel==0.9.5
+Flask==0.6.1
+Flask-SQLAlchemy==0.9.1
+Flask-Silk==0.1.1
+Flask-Uploads==0.1.2
+Flask-WTF==0.5.1
+Jinja2==2.5.5
+SQLAlchemy==0.6.6
+WTForms==0.6.2
+Werkzeug==0.6.2
+psycopg2==2.3.2
+py-pretty==1
+pyzipcode==0.4
+gunicorn==0.12.0

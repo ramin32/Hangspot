@@ -1,0 +1,281 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-style: normal;
+    font-variant: normal;
+    line-height: 25px;
+    margin: auto;
+    width: 900px;
+    background-color: #f0f0f0;
+}
+
+p {
+    margin-top:10px;
+}
+a { 
+    text-decoration:none;
+    color: #0062bd;
+    font-weight:bold;
+}
+#header a:hover{
+    text-decoration:underline;
+}
+a img{
+    border-width:0;
+}
+#header {
+    margin-top:10px;
+    margin-bottom:5px;
+    border-width: 2px 0;
+    border-style: solid;
+    /*background-color: #7e3e34;*/
+    background-color: #181818;
+    border-color: #ed7020;
+    color: #ffffff;
+}
+#header a {
+    color:white;
+}
+
+#login_form {
+    padding-top: 5px;
+}
+
+#login_form #username, #login_form #password {
+    width:150px;
+}
+
+#footer {
+    text-align: center;
+    padding: 20px;
+}
+#site_id {
+    padding: 10px;
+    line-height: 31px;
+    float:left;
+    text-shadow: black 2px 2px;
+}
+#site_id #title{
+    font-style:italic;
+}
+#site_id #tagline {
+    color: #a19235;
+    font-style:italic;
+    text-shadow: black 2px 2px ;
+}
+
+#site_meta_section {
+    padding-right:10px;
+    font-size:90%;
+    float:right;
+}
+#nav {
+    padding-top:120px;
+}
+#nav ul { 
+    list-style-type: none; 
+}
+#nav li { 
+    display: inline; 
+}
+#nav li a {
+    font-weight: bold;
+    color: #ed7020;
+    margin-left:2px;
+    padding: 4px 3px 3px 5px;
+    background-color: #f0f0f0;
+
+    border-radius: 5px 5px 0 0;
+    -moz-border-radius: 5px 5px 0 0;
+    -webkit-border-radius: 5px 5px 0 0;
+    border-color: #ed7020;
+    border-style:solid;
+    border-width: 2px 2px 0 2px;
+}
+
+#nav li a:hover, #nav li .selected {
+    text-decoration:none;
+    padding-bottom:5px;
+
+
+}
+
+#content { 
+}
+
+#profile_meta {
+    float: left;
+}
+
+#profile_questions {
+    float: right;
+    width:60%;
+}
+#profile_comments {
+    clear: both;
+    
+}
+
+#profile_comments #comment_submit{
+    text-align:right;
+    margin-right:4px;
+}
+#profile_comments #comment_input textarea{
+    width:99%;
+    height:80px;
+    margin-left:4px;
+}
+.comment
+{
+    margin:10px 4px;
+    border: 1px solid #f0f0f0;
+    border-radius: 5px;
+}
+
+h2{
+    margin:15px 5px;
+}
+
+#profile_comments .profile_link, #private_messages .profile_link{
+    float:left;
+}
+#profile_comments .profile_link img,
+#private_messages .profile_link img{
+    width:70px;
+    height:70px;
+}
+#profile_comments .message
+{
+    float:left;
+    margin-left:10px;
+}
+.message_meta {
+    float:right;
+}
+.next_page{
+    background:gray;
+    color:white;
+}
+
+.label_cell{
+    text-align:right;
+    padding-right:5px;
+}
+
+#sign_up_form table {
+    text-align:left;
+}
+
+.error {
+    font-size: 80%;
+    font-weight: bold;
+    color:red;
+}
+
+.asl {
+    text-align:center;
+}
+
+#login_form input[type="submit"]{
+    padding: 2px 5px;
+}
+#interview_form .question{
+    padding-right:5px;
+
+}
+#interview_form .answer textarea{
+    width:300px;
+    height: 45px;
+}
+
+
+#profile .question{
+    background-color: #f0f0f0;
+    padding:2px;
+}
+
+.round_box{
+    border:1px solid #ed7020;
+}
+.profile_link table{
+    display:inline;
+    text-align:center;
+}
+.profile_link table a{
+    color:#2c2c2c;
+}
+
+.flash {
+    margin: 10px 0;
+    padding: 2px 2px;
+    background-color:#f4a83d;
+    border:1px dotted #000000;
+}
+
+#sign_up_link{
+    float:right;
+}
+#login_button {
+    padding: 2px 15px;
+}
+
+#user_welcome{
+    font-weight:bold;
+    color:orange;
+}
+
+#profile_meta .round_box{
+    width:270px;
+}
+
+.round_box {
+    background-color: #fff;
+    border-radius:5px;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    padding:5px;
+    margin: 10px 0;
+}
+.thumb{
+    height:130px;
+}
+.date {
+    font-style: italic;
+}
+
+#enlarged_photos{
+    margin-top:10px;
+    text-align:center;
+}
+
+#back_to_profile_link{
+    margin-top:10px;
+    text-decoration:underline;
+}
+
+#feedback #message {
+    width:100%;
+    height:100px;
+}
+
+#private_message #subject {
+    width:150px;
+}
+#private_message #message {
+    width:700px;
+    height:100px;
+}
+
+.pm_links{
+    float:right;
+}
+
+#terms ul{
+    margin:20px 50px;
+}
+
+.box_meta_links a{
+    text-decoration:underline;
+}

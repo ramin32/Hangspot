@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% import '_util.html' as util %}
+
+{% block body %}
+    <div class="round_box">
+    <h4> Sign up for your personal {{title}} acount!</h4>
+    </p>
+    <form method="POST" action="." id="sign_up_form">
+        <table>
+            {{form.csrf}}
+            {{ util.field(form.username)}}
+            {{ util.field(form.password)}}
+            {{ util.field(form.email)}}
+            <tr>
+                <td class="label_cell">
+                    Birth Date:
+                </td>
+                <td>
+                    {{ form.birth_month }}
+                    {{ form.birth_day }}
+                    {{ form.birth_year }}
+                </td>
+            </tr>
+            {{ util.errors(form.birth_month) }}
+            {{ util.errors(form.birth_day) }}
+            {{ util.errors(form.birth_year) }}
+
+            {{ util.field(form.gender) }}
+            {{ util.field(form.zip_code) }}
+            {{ util.field(form.agree_terms) }}
+            {{ util.field(form.recaptcha) }}
+            <tr>
+                <td/>
+                <td> <input type="submit" value="Sign Up!"/></td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+{% endblock %}

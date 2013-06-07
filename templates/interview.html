@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block body %}
+<h2> Your Interview</h2>
+<form method="POST" action="" id="interview_form">
+    {{ submit_form.csrf }}
+    <table>
+        {% for q_id, question in questions.iteritems() %}
+        <tr>
+            <td class="question">{{question}}</td>
+            <td class="answer">
+                {% if q_id in answers %}
+                <textarea  name="{{q_id}}">{{answers[q_id]}}</textarea>
+                {% else %}
+                <textarea  name="{{q_id}}"></textarea>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td/>
+            <td>{{submit_form.submit}}</td>
+        </tr>
+    </table>
+</form>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% import '_util.html' as util %}
+{% extends 'base.html' %}
+
+{% block body %}
+<form id="browse_form" method="GET" action=".">
+    {% for field in browse_form %}
+        {% if field.name != 'csrf' %}
+        {{field.label}}: {{ field }}
+        {% endif %}
+    {% endfor %}
+    <input type="submit" value="Sort"/>
+</form>
+<div class="round_box" id="profile_list">
+    {% if users %}
+    {% set user_groups = g.group_by(users, 6) %}
+    <table id="profiles_grid">
+        {% for group in user_groups %}
+            <tr>
+                {% for user in group %}
+                <td>{% if user %}{{ util.profile_link(user) }} {% endif %}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+            <h2> Nothing found </h2>
+    {% endif %}
+</div>
+
+{% endblock %}

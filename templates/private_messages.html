@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% import '_util.html' as util %}
+
+{% block body %}
+<div id="private_messages" class="round_box">
+    <h2> Your Inbox </h2>
+    {% for pm in g.user.private_messages %}
+    <div class="comment">
+        {{util.profile_link(pm.sender)}}
+        <div class="pm_message">
+            Subject: {{pm.subject}}
+            <div class="pm_links">
+                <a href="{{url_for('views.private_message', username=pm.sender.username)}}">{{util.icon('email.png')}}Reply</a>
+                <p>
+                <a href="{{url_for('views.delete_pm', pm_id=pm.id)}}">{{util.icon('delete.png')}}Delete</a>
+            </div>
+            <p>
+            {{pm.message}}
+        </div>
+        <br clear="all"/>
+    </div>
+    {% else %}
+        Your inbox is empty.
+    {% endfor %}
+</div>
+{% endblock %}

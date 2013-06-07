@@ -1,0 +1,75 @@
+{% macro errors(field) %}
+{% for e in field.errors %}
+    <tr>
+        <td></td> 
+        <td class="error">{{e}}</td>
+    </tr>
+    {% endfor %}
+{% endmacro %}
+
+{% macro submit_field(value='Submit') %}
+    <tr>
+        <td></td> 
+        <td><input type="submit" value="{{value}}"></td>
+    </tr>
+{% endmacro %}
+
+{% macro field(field) %}
+    <tr>
+        <td class="label_cell">{{ field.label }}: </td> 
+        <td>{{ field }}</td>
+        <td>{{ field.description }}</td>
+    </tr>
+    {{ errors(field) }}
+    {% endmacro %}
+
+{% macro form(form, action='.') %}
+<form method="POST" action={{action}}>
+    <table>
+    {% for f in form %}
+        {% if f.name == 'csrf' %}
+            {{f}}
+        {% else %}
+            {% if f.name != 'recaptcha' %}
+                {{ field(f)}}
+            {% else %}
+                <tr>
+                    <td class="label_cell"> {{f.label}} </td>
+                    <td colspan="2">{{f}}</td>
+                </tr>
+                <tr><td/><td class="error">{{ f.errors|first}}</td></tr>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+    <tr>
+        <td></td> 
+        <td><input type="submit" value="Submit"></td>
+    </tr>
+    </table>
+</form>
+{% endmacro %}
+
+{% macro tab(request, action, name) %}
+    {% set url = url_for(action, **kwargs) %}
+    <li>
+        <a href="{{ url }}" 
+           {% if request.path == url %}
+               class="selected"
+           {% endif %}
+        >{{name}}</a>
+    </li>
+{% endmacro %}
+
+{% macro profile_link(user) %}
+    <a href="{{url_for('views.profile', username=user.username)}}" class="profile_link">
+    <table>
+        <tr><td>{{user.username}}</td></tr>
+        <tr><td><span class="image_cell"><img src="{{user.photo()}}" class="thumb"/></span></td></tr>
+        <tr><td>{{user.asl()}}</td></tr>
+    </table>
+    </a>
+{% endmacro %}
+
+{% macro icon(filename) %}
+    <img src="/static/images/{{filename}}"/>
+{% endmacro %}

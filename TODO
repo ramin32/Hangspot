@@ -1,0 +1,35 @@
+DONE:
+Basic view design and pages.
+DB design
+Sign up,
+Questionere fill out.
+user sessions,remember
+decorators for user pages,edit sign up etc
+comments
+Browse,
+add capability to upload, browse,
+feedback
+terms
+delete images
+private messages
+buddies
+clear visitors
+
+TODO:
+call netfirms
+add akismet to messages
+better design
+select profile pic, crop
+chat
+delete comments, buddies
+filter comments by relavance
+invite friends by email 
+
+Low Priority:
+crop pic
+refine entity delete/add
+browse by relationship status
+clean up URLs (REST)
+
+NOTES:
+Imitate NYT font and manhattan skyline.

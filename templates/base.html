@@ -1,0 +1,106 @@
+{% import '_util.html' as util %}
+
+{% set title = 'hangspot' %}
+{% set tagline = 'when you\'re tired of facebook' %}
+
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+        <meta name="title" content="{{title}}" />
+        <meta name="description" content="{{title}}:{{tagline}}" />
+        <meta name="medium" content="blog" />
+        <title>{{title}}</title>
+        <link rel="stylesheet" href="/static/css/style.css" />
+        <script type="text/javascript">
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-8176639-4']);
+            _gaq.push(['_trackPageview']);
+
+            (function() {
+             var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+             ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+             })();
+
+         </script>
+    </head>
+
+    <body>
+        <div id="header">
+            <div>
+                <div id="site_id">
+                    <h1 id="title">{{title}}</h1> 
+                    <h4 id="tagline">{{tagline}}</h4>
+                </div>
+
+                <div id="site_meta_section">
+                    {% if g.user %}       
+                    <span id="user_welcome">Welcome, {{g.user.username}}!</span> - 
+                    <a href="{{url_for('views.profile', username=g.user.username)}}">My Profile</a> |
+                    <a href="{{url_for('views.private_messages')}}"><img src="/static/images/email.png"/>Inbox</a> |
+                    <a href="{{url_for('views.logout')}}">Logout</a>
+                    {% else %}
+                    <form id="login_form" method="POST" action="{{url_for('views.login')}}">
+                        {{ g.login_form.csrf }}
+                        <table>
+                            {% if g.login_error %}
+                            <tr>
+                                <td></td>
+                                <td class="error">Invalid Account.</td>
+                            </tr>
+                            {% endif %}
+                            <tr>
+                                <td class="label_cell">{{ g.login_form.username.label }}:</td>
+                                <td>{{ g.login_form.username }}</td>
+                            </tr>
+                            <tr>
+                                <td class="label_cell">{{ g.login_form.password.label }}:</td>
+                                <td>{{ g.login_form.password }}</td>
+                            </tr>
+
+                            <tr>
+                                <td></td>
+                                <td>{{ g.login_form.remember_me }} {{ g.login_form.remember_me.label }}</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <input id="login_button" type="submit" value="Login"/>
+                                    <a id="sign_up_link" href="{{url_for('views.sign_up')}}">Sign Up</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                    {%endif %}
+                </div>
+            </div>
+            <div id="nav">
+                <ul>
+                    {{util.tab(request, 'views.profiles', 'Profiles')  }} 
+                </ul>
+            </div>
+
+        </div>
+
+
+        <div id="content">
+
+            {% for msg in get_flashed_messages() %}
+            <div class="flash">{{ msg }}</div>
+            {% endfor %}
+
+            {% block body %}
+            {% endblock %}
+        </div>
+        <div id="footer">
+            <div id="footer_links">
+                <a href="{{url_for('views.feedback')}}">Contact Us</a> |
+                <a href="{{url_for('views.terms')}}">Privacy and Terms of Use</a> 
+            </div>
+            <p>
+            Copyright &copy; {{g.year}} {{title}}
+            </p>
+        </div>
+    </body>
+</html>
